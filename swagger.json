@@ -1,0 +1,452 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "Documentación corresponde a API, desarrollada para el desafío de Abstract",
+        "version": "1.0.0",
+        "title": "Documentación Abrstract API",
+        "termsOfService": "http://swagger.io/terms/",
+        "contact": {
+            "email": "ignacionorambuenag@gmail.com"
+        }
+    },
+    "host": "abstract-inorambuena.herokuapp.com",
+    "basePath": "/",
+    "tags": [{
+            "name": "partido"
+        },
+        {
+            "name": "invitado"
+        }
+    ],
+    "schemes": [
+        "https",
+        "http"
+    ],
+    "paths": {
+        "/partido/insertar": {
+            "post": {
+                "tags": [
+                    "partido"
+                ],
+                "summary": "Ingresar partido",
+                "description": "",
+                "operationId": "createMatch",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                    "in": "body",
+                    "name": "body",
+                    "description": "Objeto que se requiere para ingresar un partido",
+                    "schema": {
+                        "$ref": "#/definitions/Match"
+                    }
+                }],
+                "responses": {
+                    "200": {
+                        "description": "Partido creado"
+                    }
+                }
+            }
+        },
+        "/partido/listado": {
+            "get": {
+                "tags": [
+                    "partido"
+                ],
+                "summary": "Listado de partidos",
+                "description": "Obtiene el listado de partidos",
+                "operationId": "getMatch",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Listado de partidos",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Match"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/partido/tipo-partido": {
+            "get": {
+                "tags": [
+                    "partido"
+                ],
+                "summary": "Listado de tipo de partido",
+                "description": "Obtiene el listado de tipos de partido",
+                "operationId": "getTypeMatch",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Listado de tipos de partidos",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/TypeMatch"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/partido/recinto-deportivo": {
+            "get": {
+                "tags": [
+                    "partido"
+                ],
+                "summary": "Listado de recintos deportivos",
+                "description": "Obtiene el listado de recintos deportivos",
+                "operationId": "getSportVenue",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Listado de recintos deportivos",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/SportVenue"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/partido/detalle/{id}": {
+            "get": {
+                "tags": [
+                    "partido"
+                ],
+                "summary": "Detalle de un partido",
+                "description": "Retorna el detalle de un partido",
+                "operationId": "getMatchById",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                    "name": "id",
+                    "in": "path",
+                    "description": "ID de partido a retornar",
+                    "required": true,
+                    "type": "integer",
+                    "format": "int64"
+                }],
+                "responses": {
+                    "200": {
+                        "description": "Detalle de partido",
+                        "schema": {
+                            "$ref": "#/definitions/DetailMatch"
+                        }
+                    }
+                }
+            }
+        },
+        "/partido/eliminar/{id}": {
+            "delete": {
+                "tags": [
+                    "partido"
+                ],
+                "summary": "Elimina un partido",
+                "operationId": "deletMatchById",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                    "name": "id",
+                    "in": "path",
+                    "description": "ID de partido a eliminar",
+                    "required": true,
+                    "type": "integer",
+                    "format": "int64"
+                }],
+                "responses": {
+                    "200": {
+                        "description": "ELIMINADO"
+                    }
+                }
+            }
+        },
+        "/invitado/listado/{id}": {
+            "get": {
+                "tags": [
+                    "invitado"
+                ],
+                "summary": "Listado de invitados por ID de partido",
+                "description": "Obtiene el listado de invitados por ID de partido",
+                "operationId": "getInvited",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                    "name": "id",
+                    "in": "path",
+                    "description": "ID del partido",
+                    "required": true,
+                    "type": "integer"
+                }],
+                "responses": {
+                    "200": {
+                        "description": "Listado de invitados",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Invited"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/invitado/insertar": {
+            "post": {
+                "tags": [
+                    "invitado"
+                ],
+                "summary": "Ingresar invitado",
+                "description": "",
+                "operationId": "createInvited",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                    "in": "body",
+                    "name": "body",
+                    "description": "Objeto que se requiere para ingresar un invitado",
+                    "schema": {
+                        "$ref": "#/definitions/Invited"
+                    }
+                }],
+                "responses": {
+                    "200": {
+                        "description": "Invitado creado"
+                    }
+                }
+            }
+        },
+        "/invitado/eliminar/{id}": {
+            "delete": {
+                "tags": [
+                    "invitado"
+                ],
+                "summary": "Elimina un invitado",
+                "operationId": "deletInvitedById",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                    "name": "id",
+                    "in": "path",
+                    "description": "ID de invitado a eliminar",
+                    "required": true,
+                    "type": "integer",
+                    "format": "int64"
+                }],
+                "responses": {
+                    "200": {
+                        "description": "ELIMINADO"
+                    }
+                }
+            }
+        },
+        "/invitado/confirmar/{id}": {
+            "put": {
+                "tags": [
+                    "invitado"
+                ],
+                "summary": "Confirma invitación a un partido",
+                "operationId": "confirmInvited",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                    "name": "id",
+                    "in": "path",
+                    "description": "ID de invitado a confirmar",
+                    "required": true,
+                    "type": "integer",
+                    "format": "int64"
+                }],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/invitado/rechazar/{id}": {
+            "put": {
+                "tags": [
+                    "invitado"
+                ],
+                "summary": "Rechazar invitación a un partido",
+                "operationId": "declineInvited",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                    "name": "id",
+                    "in": "path",
+                    "description": "ID de invitado a rechazar",
+                    "required": true,
+                    "type": "integer",
+                    "format": "int64"
+                }],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "Match": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "tipoPartido": {
+                    "type": "integer"
+                },
+                "recintoDeportivo": {
+                    "type": "integer"
+                },
+                "date": {
+                    "type": "string",
+                    "format": "date"
+                },
+                "hour": {
+                    "type": "string"
+                }
+            }
+        },
+        "DetailMatch": {
+            "type": "object",
+            "properties": {
+                "detalle": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "integer"
+                        },
+                        "nombre": {
+                            "type": "string"
+                        },
+                        "fecha": {
+                            "type": "string",
+                            "format": "date"
+                        },
+                        "hora": {
+                            "type": "string"
+                        },
+                        "tipopartido": {
+                            "type": "string"
+                        },
+                        "tipopartidoid": {
+                            "type": "integer"
+                        },
+                        "recinto": {
+                            "type": "integer"
+                        }
+                    }
+                },
+                "recinto": {
+                    "type": "object",
+                    "properties": {
+                        "ID": {
+                            "type": "integer"
+                        },
+                        "name": {
+                            "type": "string"
+                        },
+                        "phone": {
+                            "type": "string"
+                        },
+                        "phone2": {
+                            "type": "string"
+                        },
+                        "address": {
+                            "type": "string"
+                        },
+                        "number": {
+                            "type": "string"
+                        },
+                        "common": {
+                            "type": "string"
+                        },
+                        "latLong": {
+                            "type": "string"
+                        },
+                        "horarios": {
+                            "type": "string"
+                        },
+                        "website": {
+                            "type": "string"
+                        },
+                        "email": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "TypeMatch": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "nombre": {
+                    "type": "string"
+                }
+            }
+        },
+        "SportVenue": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "nombre": {
+                    "type": "string"
+                }
+            }
+        },
+        "Invited": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "idpartido": {
+                    "type": "integer"
+                },
+                "nombre": {
+                    "type": "string"
+                },
+                "estado": {
+                    "type": "string"
+                },
+                "tipo": {
+                    "type": "integer"
+                }
+            }
+        }
+    }
+}
